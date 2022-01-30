@@ -1,10 +1,16 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from google.maps import nearby_search, additional_filters
 from models.PlaceRequest import PlaceRequest
 
 import logging
 
 app = Flask(__name__, static_url_path='')
+limiter = Limiter(app, key_func=get_remote_address)
+CORS(app)
+
 logging.basicConfig(filename='./logs/api.log',
                     filemode='a',
                     format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
@@ -19,6 +25,7 @@ def index():
     return "<h2>I'm Hungry, Feed Me API</h2><br><br\> \
             <a href='https://imhungryfeed.me'>Website</a>"
 
+@limiter.limit("60/minute")
 @app.route('/api/places', methods=['POST'])
 def feed_me():
     logging.debug(f"Inbound request: {request.json}")
