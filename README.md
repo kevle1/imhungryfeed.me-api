@@ -2,7 +2,7 @@
 
 An API for the random restaurant picker website: https://imhungryfeed.me (Coming soon... maybe)
 
-Built using Flask and Google Maps Platform.
+Built using Flask and the Google Maps Platform.
 
 ## Woah, how do I use it? 🍔
 
@@ -63,7 +63,7 @@ We're only using the "Places API"
 
 Update the `keys.sample.yaml` with your API key and save it as `keys.yaml` in the same directory
 
-### Docker (Recommended) 
+### Docker (Recommended)
 
 You'll need Docker
 

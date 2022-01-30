@@ -25,8 +25,8 @@ def feed_me():
     place = PlaceRequest(**request.json)
 
     bad_request_msg = None
-    if not 0 <= place.min_price <= 4 or not 0 <= place.max_price <= 4:
-        bad_request_msg = "Error: Invalid price specified, must be between 0 and 4"
+    if not 1 <= place.min_price <= 4 or not 1 <= place.max_price <= 4:
+        bad_request_msg = "Error: Invalid price specified, must be between 1 and 4"
     elif place.max_price < place.min_price:
         bad_request_msg = "Error: Invalid price range"
     elif place.radius < 100 or place.radius > 24000:
@@ -38,6 +38,9 @@ def feed_me():
         logging.error(bad_request_msg)
         return bad_request_msg, BAD_REQUEST
 
+    # NOTE: Cache will be missed if these params are updated (likely often)
+    #       Consider just filtering on returned properties rather
+    #       than hitting Google. May cause reduced result set.
     places = nearby_search(place.latitude,
                            place.longitude,
                            place.radius,
