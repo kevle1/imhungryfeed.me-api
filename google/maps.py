@@ -42,6 +42,9 @@ def nearby_search(latitude, longitude, radius, keyword, min_price, max_price, op
             elif status == 'ZERO_RESULTS':
                 logging.info('No results returned from Maps API')
                 break
+            elif status != 'OK':
+                logging.info(f'Unknown Error with status {status}')
+                break
             elif status == 'OK':
                 if 'results' in nearby:
                     results.extend(nearby['results'])
@@ -60,6 +63,10 @@ def nearby_search(latitude, longitude, radius, keyword, min_price, max_price, op
             logging.error(f'Error: Could not find key - {e}')
         except ApiError as ae:
             logging.error(f'Error: Could not make request to Maps API - {ae}')
+            break
+        except Exception as e:
+            logging.error(f'Error: Fatal error - {e}')
+            break
 
     return build_response(results)
 

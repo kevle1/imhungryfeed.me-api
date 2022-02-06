@@ -12,7 +12,7 @@ class PlaceRequest(object):
         self.longitude = round(longitude, LOCATION_ACCURACY)
         self.radius = math.ceil(float(radius) / RADIUS_ACCURACY) * RADIUS_ACCURACY # Round to nearest 100 metres
         self.keyword = keyword
-        self.min_price = min_price or 1  # $-$$$$ 1-4 dollar signs
-        self.max_price = max_price or 4
+        self.min_price = round(min_price) or 1  # $-$$$$ 1-4 dollar signs
+        self.max_price = round(max_price) or 4
         self.open_now = open_now
         self.rating = rating or 0.0
