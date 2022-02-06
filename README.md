@@ -1,6 +1,6 @@
 # I'm Hungry, Feed Me - API 🍜
 
-An API for the random restaurant picker website: https://imhungryfeed.me (Coming soon... maybe)
+An API for the [random restaurant picker app](https://github.com/kevinle-1/imhungryfeed.me).
 
 Built using Flask and the Google Maps Platform.
 
