@@ -70,6 +70,8 @@ You'll need Docker
 1. Build image `docker build -t feedme/api .`
 2. Run it! `docker run -p 5000:5000/tcp feedme/api -d`
 
+Note: Ensure `run.sh` is executable before building the image! `chmod +x run.sh`
+
 ### Command Line
 
 You'll need Python3.8+
