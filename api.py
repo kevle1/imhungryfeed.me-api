@@ -26,7 +26,7 @@ def index():
             <a href='https://imhungryfeed.me'>Website</a>"
 
 @limiter.limit("60/minute")
-@app.route('/api/places', methods=['POST'])
+@app.route('/places', methods=['POST'])
 def feed_me():
     logging.debug(f"Inbound request: {request.json}")
     place = PlaceRequest(**request.json)
