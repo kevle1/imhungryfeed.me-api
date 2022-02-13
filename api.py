@@ -2,7 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+
 from google.maps import nearby_search, additional_filters
+from ip.ip import ip_location
+
 from models.PlaceRequest import PlaceRequest
 
 import logging
@@ -59,3 +62,16 @@ def feed_me():
     places = additional_filters(places, place.rating)
 
     return jsonify(places)
+
+@limiter.limit("80/minute")
+@app.route('/ip', methods=['GET'])
+def get_ip():
+    logging.debug(f"Inbound request: {request.remote_addr}")
+
+    ip_info = ip_location(request.remote_addr)
+
+    if ip_info:
+        logging.debug(f"Outbound IP request: {ip_info}")
+        return jsonify(ip_info), 200
+    else:
+        return "Error: No location response from ip-api.com", 400
