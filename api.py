@@ -70,7 +70,6 @@ def get_ip():
     ip = request.headers.get('X-Real-Ip')
 
     logging.debug(f"Inbound headers: {ip}")  # nginx config will have headers set
-
     ip_info = ip_location(ip)
 
     if ip_info:
