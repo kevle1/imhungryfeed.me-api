@@ -66,9 +66,12 @@ def feed_me():
 @limiter.limit("80/minute")
 @app.route('/ip', methods=['GET'])
 def get_ip():
-    logging.debug(f"Inbound request: {request.remote_addr}")
+    #logging.debug(f"Inbound request: {request.remote_addr}")
+    ip = request.headers.get('X-Real-Ip')
 
-    ip_info = ip_location(request.remote_addr)
+    logging.debug(f"Inbound headers: {ip}")  # nginx config will have headers set
+
+    ip_info = ip_location(ip)
 
     if ip_info:
         logging.debug(f"Outbound IP request: {ip_info}")

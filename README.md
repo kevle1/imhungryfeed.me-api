@@ -6,7 +6,7 @@ Built using Flask and the Google Maps Platform.
 
 ## Woah, how do I use it? 🍔
 
-### Endpoint~~s~~ (Just one right now!)
+### Endpoints
 
 Essentially a wrapper around the [Nearby Search](https://developers.google.com/maps/documentation/places/web-service/search-nearby#required-parameters) endpoint.
 
@@ -53,6 +53,23 @@ Example very cool Response:
     },
     ...
 ]
+```
+
+GET `/ip`
+
+Get IP geolocation information
+
+Note, you will require the following config if using Nginx (recommended)
+
+```
+    location / {
+        proxy_pass  http://web;
+        proxy_set_header   Connection "";
+        proxy_http_version 1.1;
+        proxy_set_header        Host            $host;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
 ```
 
 ## Running it yourself! 🍕
