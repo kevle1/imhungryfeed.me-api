@@ -15,9 +15,9 @@ cache = Cache("cache")
 
 with open(os.path.join(os.path.dirname(__file__), 'keys.yaml'), 'r') as c:
     key = yaml.safe_load(c)['gmaps']
-    if(key == 'YOUR_GOOGLE_MAPS_KEY' or key is None)
+    if(key == 'YOUR_GOOGLE_MAPS_KEY' or key is None):
         logging.info('No key found in config, trying to get from env')
-        key = os.getenv('GOOGLE_MAPS_KEY') # Try get key from environment 
+        key = os.getenv('GOOGLE_MAPS_KEY') # Try get key from environment
 
 gmaps = googlemaps.Client(key=key)
 
