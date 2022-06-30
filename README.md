@@ -80,6 +80,8 @@ We're only using the "Places API"
 
 Update the `keys.sample.yaml` with your API key and save it as `keys.yaml` in the same directory
 
+OR you can set the `GOOGLE_MAPS_KEY` environment variable to your API key. 
+
 ### Docker (Recommended)
 
 You'll need Docker
