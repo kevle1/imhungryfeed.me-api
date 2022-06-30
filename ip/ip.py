@@ -1,9 +1,9 @@
 import requests
 from diskcache import Cache
 
-cache = Cache("cache")
+# cache = Cache("cache")
 
-@cache.memoize()
+# @cache.memoize()
 def ip_location(ip: str):
     ip_api_res = requests.get(f"http://ip-api.com/json/{ip}?fields=lat,lon")
     ip_api_json = ip_api_res.json()

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS, cross_origin
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -61,7 +61,10 @@ def feed_me():
 
     places = additional_filters(places, place.rating)
 
-    return jsonify(places)
+    response = Response(jsonify(places))
+    response.headers['Cache-Control'] = 's-maxage=60' # Cache for 60 seconds 
+
+    return response
 
 @limiter.limit("80/minute")
 @app.route('/ip', methods=['GET'])

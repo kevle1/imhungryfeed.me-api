@@ -11,7 +11,7 @@ from googlemaps.exceptions import ApiError
 RESTAURANT_TYPE = 'restaurant'
 RESULTS_COUNT_MAX = 80 # Retrieve 80 restaurants from Google Maps API - Max wait of 4 seconds
 
-cache = Cache("cache")
+# cache = Cache(f"cache")
 
 with open(os.path.join(os.path.dirname(__file__), 'keys.yaml'), 'r') as c:
     key = yaml.safe_load(c)['gmaps']
@@ -21,7 +21,7 @@ with open(os.path.join(os.path.dirname(__file__), 'keys.yaml'), 'r') as c:
 
 gmaps = googlemaps.Client(key=key)
 
-@cache.memoize()
+# @cache.memoize()
 def nearby_search(latitude, longitude, radius, keyword, min_price, max_price, open_now):
     page_token = None
     results = []
