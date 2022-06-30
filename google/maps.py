@@ -13,11 +13,13 @@ RESULTS_COUNT_MAX = 80 # Retrieve 80 restaurants from Google Maps API - Max wait
 
 # cache = Cache(f"cache")
 
-with open(os.path.join(os.path.dirname(__file__), 'keys.yaml'), 'r') as c:
-    key = yaml.safe_load(c)['gmaps']
-    if(key == 'YOUR_GOOGLE_MAPS_KEY' or key is None):
-        logging.info('No key found in config, trying to get from env')
-        key = os.getenv('GOOGLE_MAPS_KEY') # Try get key from environment
+try:
+    with open(os.path.join(os.path.dirname(__file__), 'keys.yaml'), 'r') as c:
+        key = yaml.safe_load(c)['gmaps']
+
+except FileNotFoundError:
+    logging.info('No config, trying to get from env')
+    key = os.getenv('GOOGLE_MAPS_KEY') # Try get key from environment
 
 gmaps = googlemaps.Client(key=key)
 
