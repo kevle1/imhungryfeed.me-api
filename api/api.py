@@ -1,3 +1,4 @@
+import json
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS, cross_origin
 from flask_limiter import Limiter
@@ -61,8 +62,9 @@ def feed_me():
 
     places = additional_filters(places, place.rating)
 
-    response = Response(jsonify(places))
-    response.headers['Cache-Control'] = 's-maxage=60' # Cache for 60 seconds 
+    response = Response(json.dumps(places))
+    response.headers['Cache-Control'] = 's-maxage=60' # Cache for 60 seconds
+    response.headers['Content-Type'] = 'application/json' 
 
     return response
 
