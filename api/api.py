@@ -63,8 +63,8 @@ def feed_me():
     places = additional_filters(places, place.rating)
 
     response = Response(json.dumps(places))
-    response.headers['Cache-Control'] = 's-maxage=60' # Cache for 60 seconds
-    response.headers['Content-Type'] = 'application/json' 
+    response.headers['Cache-Control'] = 's-maxage=43200' # Cache for 12 hours (Results don't change much)
+    response.headers['Content-Type'] = 'application/json'
 
     return response
 
