@@ -1,4 +1,4 @@
-Flask==2.0.2
+Flask==2.3.2
 pyyaml~=5.4.1
 googlemaps~=4.5.3
 diskcache~=5.4.0
